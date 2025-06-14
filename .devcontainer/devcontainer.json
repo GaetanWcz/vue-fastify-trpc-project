@@ -1,0 +1,117 @@
+{
+  "name": "Vue tRPC Drizzle Stack",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "version": "latest",
+      "enableNonRootDocker": "true"
+    }
+  },
+
+  "runArgs": ["--network=host"],
+
+  "initializeCommand": "docker compose down && docker compose up -d",
+  "postCreateCommand": "echo '🏗️ Container créé, installation en cours...'",
+  "postStartCommand": "echo '🚀 Installation des outils globaux...' && npm install -g drizzle-kit tsx && echo '📦 Installation des dépendances locales...' && npm install && echo '✅ Installation terminée!' && echo '💡 Lancez: npm run dev:full (qui démarre tout automatiquement)'",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Vue.volar",
+        "Vue.vscode-typescript-vue-plugin",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "GitHub.copilot",
+        "GitLens.gitlens",
+        "PKief.material-icon-theme"
+      ],
+      "settings": {
+        "typescript.updateImportsOnFileMove.enabled": "always",
+        "typescript.suggest.autoImports": true,
+        "typescript.preferences.useAliasesForRenames": false,
+        "typescript.inlayHints.parameterNames.enabled": "all",
+        "typescript.inlayHints.variableTypes.enabled": true,
+        "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+        "typescript.preferences.includePackageJsonAutoImports": "on",
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggest.showColors": false,
+        "editor.suggest.showIcons": true,
+        "editor.suggest.showKeywords": true,
+        "editor.suggest.showSnippets": false,
+        "editor.suggest.showUsers": false,
+        "editor.suggest.showFiles": false,
+        "editor.suggest.showFolders": false,
+        "editor.quickSuggestions": {
+          "other": "on",
+          "comments": "off",
+          "strings": "off"
+        },
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "files.associations": {
+          "*.vue": "vue"
+        },
+        "emmet.includeLanguages": {
+          "vue": "html"
+        },
+        "vue.codeActions.enabled": true,
+        "vue.complete.casing.tags": "kebab",
+        "vue.complete.casing.props": "camel",
+        "workbench.iconTheme": "material-icon-theme",
+        "git.enableSmartCommit": true,
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "[vue]": {
+          "editor.defaultFormatter": "Vue.volar",
+          "editor.suggest.showColors": false,
+          "editor.suggest.showSnippets": true
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.suggest.showColors": false,
+          "editor.suggest.showSnippets": false
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.suggest.showColors": false,
+          "editor.suggest.showSnippets": false
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      }
+    }
+  },
+
+  "forwardPorts": [3000, 3001, 5173, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Vue Client",
+      "onAutoForward": "notify"
+    },
+    "3001": {
+      "label": "Fastify Server",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    },
+    "5432": {
+      "label": "PostgreSQL",
+      "onAutoForward": "silent"
+    }
+  },
+
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "npm_config_target_arch": "x64",
+    "npm_config_target_platform": "linux"
+  }
+}

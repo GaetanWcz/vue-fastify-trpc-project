@@ -1,0 +1,25 @@
+{
+  "name": "vue-trpc-drizzle-stack",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm run dev --workspace=server",
+    "dev:client": "npm run dev --workspace=client",
+    "build": "npm run build --workspace=server && npm run build --workspace=client",
+    "db:push": "npm run db:push --workspace=server",
+    "db:migrate": "npm run db:migrate --workspace=server",
+    "db:start": "docker compose up -d",
+    "db:stop": "docker compose down",
+    "db:restart": "docker compose restart",
+    "db:logs": "docker compose logs -f postgres",
+    "db:reset": "docker compose down -v && docker compose up -d",
+    "setup": "npm run db:start && sleep 3 && npm run db:push",
+    "dev:full": "npm run db:start && sleep 3 && npm run db:push && npm run dev"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
