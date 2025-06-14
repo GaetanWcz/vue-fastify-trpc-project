@@ -125,19 +125,16 @@ const editForm = reactive({
   content: ''
 });
 
-// Query pour récupérer tous les articles
 const { data: posts, isLoading, error } = useQuery({
   queryKey: ['posts'],
   queryFn: () => trpc.post.getAll.query(),
 });
 
-// Query pour récupérer tous les utilisateurs (pour le select)
 const { data: users } = useQuery({
   queryKey: ['users'],
   queryFn: () => trpc.user.getAll.query(),
 });
 
-// Mutation pour créer un article
 const { mutate: createPostMutation, isPending: isCreating } = useMutation({
   mutationFn: (postData: { title: string; content: string; authorId: number }) =>
     trpc.post.create.mutate(postData),
@@ -150,7 +147,6 @@ const { mutate: createPostMutation, isPending: isCreating } = useMutation({
   },
 });
 
-// Mutation pour mettre à jour un article
 const { mutate: updatePostMutation, isPending: isUpdating } = useMutation({
   mutationFn: (postData: { id: number; title?: string; content?: string }) =>
     trpc.post.update.mutate(postData),
@@ -160,7 +156,6 @@ const { mutate: updatePostMutation, isPending: isUpdating } = useMutation({
   },
 });
 
-// Mutation pour supprimer un article
 const { mutate: deletePostMutation } = useMutation({
   mutationFn: (id: number) => trpc.post.delete.mutate({ id }),
   onSuccess: () => {

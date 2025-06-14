@@ -1,5 +1,4 @@
-// packages/client/src/utils/query.ts
-import { VueQueryPlugin, QueryClient } from '@tanstack/vue-query';
+import { QueryClient, VueQueryPlugin } from '@tanstack/vue-query';
 import type { App } from 'vue';
 
 export const queryClient = new QueryClient({

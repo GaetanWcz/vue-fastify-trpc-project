@@ -1,4 +1,3 @@
-// packages/server/src/db/schema.ts
 import { relations } from 'drizzle-orm';
 import { integer, pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 
@@ -18,7 +17,6 @@ export const posts = pgTable('posts', {
   updatedAt: timestamp('updated_at', { mode: 'string' }).defaultNow().notNull(),
 });
 
-// Relations
 export const usersRelations = relations(users, ({ many }) => ({
   posts: many(posts),
 }));

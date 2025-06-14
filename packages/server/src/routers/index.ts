@@ -1,16 +1,14 @@
-// packages/server/src/routers/index.ts
-import { z } from 'zod';
-import { eq, desc } from 'drizzle-orm';
 import { initTRPC } from '@trpc/server';
+import { desc, eq } from 'drizzle-orm';
+import { z } from 'zod';
 import { db } from '../db/index.js';
-import { users, posts } from '../db/schema.js';
+import { posts, users } from '../db/schema.js';
 
 const t = initTRPC.create();
 
 export const router = t.router;
 export const publicProcedure = t.procedure;
 
-// Créer des sous-routers séparés
 const userRouter = router({
   getAll: publicProcedure
     .query(async () => {
@@ -112,7 +110,6 @@ const postRouter = router({
     })
 });
 
-// Assembler le router principal
 export const appRouter = router({
   user: userRouter,
   post: postRouter,

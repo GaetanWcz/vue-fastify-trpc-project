@@ -72,13 +72,11 @@ const newUser = reactive({
   name: ''
 });
 
-// Query pour récupérer tous les utilisateurs
 const { data: users, isLoading, error } = useQuery({
   queryKey: ['users'],
   queryFn: () => trpc.user.getAll.query(),
 });
 
-// Mutation pour créer un utilisateur
 const { mutate: createUserMutation, isPending: isCreating } = useMutation({
   mutationFn: (userData: { email: string; name: string }) =>
     trpc.user.create.mutate(userData),
@@ -90,7 +88,6 @@ const { mutate: createUserMutation, isPending: isCreating } = useMutation({
   },
 });
 
-// Mutation pour supprimer un utilisateur
 const { mutate: deleteUserMutation } = useMutation({
   mutationFn: (id: number) => trpc.user.delete.mutate({ id }),
   onSuccess: () => {

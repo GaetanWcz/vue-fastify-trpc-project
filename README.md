@@ -1,156 +1,156 @@
 # Vue + tRPC + Drizzle Stack
 
-Une stack moderne full-stack TypeScript avec Vue 3, tRPC, Drizzle ORM et Fastify.
+A modern full-stack TypeScript stack with Vue 3, tRPC, Drizzle ORM and Fastify.
 
-## 🚀 Technologies utilisées
+## 🚀 Technologies
 
 - **Frontend**: Vue 3 + TypeScript + Vite + TanStack Query (Vue Query)
 - **Backend**: Node.js + Fastify + tRPC
 - **ORM**: Drizzle ORM
-- **Base de données**: PostgreSQL
+- **Database**: PostgreSQL
 - **Monorepo**: npm workspaces
 
-## 📁 Structure du projet
+## 📁 Project Structure
 
 ```
 project/
 ├── packages/
-│   ├── client/          # Application Vue 3
-│   ├── server/          # API Fastify + tRPC
-│   └── shared/          # Types partagés
+│   ├── client/          # Vue 3 application
+│   ├── server/          # Fastify + tRPC API
+│   └── shared/          # Shared types
 ├── docker-compose.yml   # PostgreSQL
-└── package.json         # Configuration workspace
+└── package.json         # Workspace configuration
 ```
 
 ## 🛠️ Installation
 
-### 1. Cloner et installer les dépendances
+### 1. Clone and install dependencies
 
 ```bash
-# Installer les dépendances
+# Install dependencies
 npm install
 
-# Installer les dépendances des packages
+# Install workspace dependencies
 npm install --workspaces
 ```
 
-### 2. Configuration de la base de données
+### 2. Database setup
 
 ```bash
-# Démarrer PostgreSQL avec Docker
-docker-compose up -d
+# Start PostgreSQL with Docker
+docker compose up -d
 
-# Copier le fichier d'environnement
+# Copy environment file
 cp .env.example packages/server/.env
 ```
 
-### 3. Générer et appliquer les migrations
+### 3. Generate and apply migrations
 
 ```bash
-# Générer les fichiers de migration
+# Generate migration files
 npm run db:generate --workspace=server
 
-# Appliquer les migrations
+# Apply migrations
 npm run db:push
 ```
 
-## 🚦 Démarrage
+## 🚦 Getting Started
 
-### Mode développement
+### Development mode
 
 ```bash
-# Démarrer le serveur et le client simultanément
+# Start both server and client
 npm run dev
 
-# Ou séparément:
+# Or separately:
 npm run dev:server  # http://localhost:3001
 npm run dev:client  # http://localhost:3000
 ```
 
-### Mode production
+### Production mode
 
 ```bash
 # Build
 npm run build
 
-# Démarrer le serveur
+# Start server
 npm start --workspace=server
 ```
 
-## 🔧 Scripts disponibles
+## 🔧 Available Scripts
 
-### Global (racine)
-- `npm run dev` - Démarre server + client
+### Global (root)
+- `npm run dev` - Start server + client
 - `npm run build` - Build server + client
-- `npm run db:push` - Applique le schéma à la DB
-- `npm run db:migrate` - Lance les migrations
+- `npm run db:push` - Apply schema to DB
+- `npm run db:migrate` - Run migrations
 
 ### Server (packages/server)
-- `npm run dev --workspace=server` - Mode développement
+- `npm run dev --workspace=server` - Development mode
 - `npm run build --workspace=server` - Build TypeScript
-- `npm run db:generate --workspace=server` - Génère les migrations
+- `npm run db:generate --workspace=server` - Generate migrations
 
 ### Client (packages/client)
-- `npm run dev --workspace=client` - Serveur de développement Vite
-- `npm run build --workspace=client` - Build pour production
+- `npm run dev --workspace=client` - Vite dev server
+- `npm run build --workspace=client` - Build for production
 
-## 📝 Fonctionnalités de l'exemple
+## 📝 Example Features
 
 ### Backend (tRPC + Drizzle)
-- ✅ CRUD complet pour Users et Posts
-- ✅ Relations entre tables (User → Posts)
-- ✅ Validation avec Zod
-- ✅ Migrations Drizzle
-- ✅ Type-safety bout en bout
+- ✅ Full CRUD for Users and Posts
+- ✅ Table relations (User → Posts)
+- ✅ Validation with Zod
+- ✅ Drizzle migrations
+- ✅ End-to-end type safety
 
 ### Frontend (Vue 3)
-- ✅ Interface de gestion des utilisateurs
-- ✅ Interface de gestion des articles
-- ✅ Formulaires de création/édition
-- ✅ Cache et synchronisation avec TanStack Query
-- ✅ Interface responsive
+- ✅ User management interface
+- ✅ Post management interface
+- ✅ Create/edit forms
+- ✅ Caching and sync with TanStack Query
+- ✅ Responsive interface
 
-## 🎯 Points clés de cette stack
+## 🎯 Key Benefits of This Stack
 
 ### Type Safety
-- Types partagés entre client et serveur
-- Drizzle génère les types depuis le schéma
-- tRPC assure la cohérence des types API
+- Shared types between client and server
+- Drizzle generates types from schema
+- tRPC ensures API type consistency
 
 ### Performance
-- Fastify (plus rapide qu'Express)
-- Drizzle ORM optimisé
-- TanStack Query pour le cache côté client
-- Hot reload en développement
+- Fastify (faster than Express)
+- Optimized Drizzle ORM
+- TanStack Query for client-side caching
+- Hot reload in development
 
 ### Developer Experience
-- Auto-complétion partout
-- Erreurs TypeScript en temps réel
-- Migrations automatiques
-- Setup monorepo simple
+- Auto-completion everywhere
+- Real-time TypeScript errors
+- Automatic migrations
+- Simple monorepo setup
 
-## 🔄 Workflow de développement
+## 🔄 Development Workflow
 
-1. **Modifier le schéma** (`packages/server/src/db/schema.ts`)
-2. **Générer la migration**: `npm run db:generate --workspace=server`
-3. **Appliquer**: `npm run db:push`
-4. **Ajouter les routes tRPC** (`packages/server/src/routers/index.ts`)
-5. **Utiliser dans Vue** avec auto-complétion complète
+1. **Modify schema** (`packages/server/src/db/schema.ts`)
+2. **Generate migration**: `npm run db:generate --workspace=server`
+3. **Apply**: `npm run db:push`
+4. **Add tRPC routes** (`packages/server/src/routers/index.ts`)
+5. **Use in Vue** with full auto-completion
 
-## 📦 Ajout de nouvelles fonctionnalités
+## 📦 Adding New Features
 
-### Nouvelle table
-1. Ajouter dans `schema.ts`
-2. Générer migration
-3. Créer les routes tRPC
-4. Implémenter côté Vue
+### New table
+1. Add to `schema.ts`
+2. Generate migration
+3. Create tRPC routes
+4. Implement in Vue
 
-### Nouvelles routes API
-1. Ajouter dans le router tRPC
-2. Types automatiquement disponibles côté client
-3. Utiliser avec `trpc.nouvelleroute.query()`
+### New API routes
+1. Add to tRPC router
+2. Types automatically available on client
+3. Use with `trpc.newroute.query()`
 
-## 🔒 Variables d'environnement
+## 🔒 Environment Variables
 
 ```bash
 # packages/server/.env
@@ -165,11 +165,11 @@ DATABASE_URL=postgres://user:password@localhost:5432/mydb
 - [Fastify](https://www.fastify.io/)
 - [TanStack Query](https://tanstack.com/query)
 
-## 🚀 Prêt pour la production
+## 🚀 Production Ready
 
-Cette stack est optimisée pour:
-- Déploiement Docker
-- Variables d'environnement
-- Build optimisé
-- Monitoring et logging
-- Scaling horizontal
+This stack is optimized for:
+- Docker deployment
+- Environment variables
+- Optimized builds
+- Monitoring and logging
+- Horizontal scaling

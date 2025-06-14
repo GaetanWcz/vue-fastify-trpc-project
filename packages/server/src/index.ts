@@ -1,7 +1,6 @@
-// packages/server/src/index.ts
-import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
+import Fastify from 'fastify';
 import { appRouter } from './routers/index.js';
 
 const server = Fastify({
@@ -9,7 +8,6 @@ const server = Fastify({
   maxParamLength: 5000,
 });
 
-// Register CORS
 await server.register(cors, {
   origin: (origin, cb) => {
     const hostname = new URL(origin).hostname;
@@ -21,7 +19,6 @@ await server.register(cors, {
   },
 });
 
-// Register tRPC plugin
 await server.register(fastifyTRPCPlugin, {
   prefix: '/trpc',
   trpcOptions: { router: appRouter },

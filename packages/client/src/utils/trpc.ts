@@ -1,7 +1,5 @@
-// packages/client/src/utils/trpc.ts
 import { createTRPCProxyClient, httpBatchLink } from '@trpc/client';
 
-// Import du type depuis le serveur
 import type { AppRouter } from '../../../server/src/routers/index';
 
 export const trpc = createTRPCProxyClient<AppRouter>({
@@ -12,7 +10,6 @@ export const trpc = createTRPCProxyClient<AppRouter>({
   ],
 });
 
-// Test de connexion avec la belle syntaxe !
 export const testTrpc = async () => {
   try {
     console.log('🔍 Test de connexion tRPC...');
