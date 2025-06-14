@@ -12,9 +12,9 @@
     }
   },
   "mounts": [
-  "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
-  "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached"
-],
+    "source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/node/.gitconfig,type=bind,consistency=cached"
+  ],
   "runArgs": ["--network=host"],
 
   "initializeCommand": "docker compose down && docker compose up -d",
