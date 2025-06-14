@@ -9,8 +9,9 @@
     }
   },
   "mounts": [
-    "source=~/.ssh,target=~/.ssh,type=bind,consistency=cached"
-  ],
+  "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+  "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached"
+],
   "runArgs": ["--network=host"],
 
   "initializeCommand": "docker compose down && docker compose up -d",
