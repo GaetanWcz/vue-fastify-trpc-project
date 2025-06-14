@@ -12,6 +12,7 @@ ARG USER_GID=$USER_UID
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
     postgresql-client \
+    gnupg2 \
     curl \
     wget \
     unzip \

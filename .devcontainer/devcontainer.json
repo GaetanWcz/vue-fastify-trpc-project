@@ -8,7 +8,9 @@
       "enableNonRootDocker": "true"
     }
   },
-
+  "mounts": [
+    "source=~/.ssh,target=~/.ssh,type=bind,consistency=cached"
+  ],
   "runArgs": ["--network=host"],
 
   "initializeCommand": "docker compose down && docker compose up -d",
